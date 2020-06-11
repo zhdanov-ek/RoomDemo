@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), EmployeeListClickListener {
 
         viewModel = MainViewModel(application)
         findViewById<Button>(R.id.addButton).setOnClickListener { addEmployee() }
+        findViewById<Button>(R.id.deleteAllButton).setOnClickListener { deleteAll() }
+        findViewById<Button>(R.id.fillDBButton).setOnClickListener { fillDb() }
         employeeName = findViewById(R.id.employeeNameEditText)
         employeeSalary = findViewById(R.id.employeeSalaryEditText)
 
@@ -59,5 +61,13 @@ class MainActivity : AppCompatActivity(), EmployeeListClickListener {
                 .setAction(R.string.remove) { viewModel.removeEmployee(employee) }
                 .show()
         }
+    }
+
+    private fun deleteAll() {
+        viewModel.deleteAllEmployees()
+    }
+
+    private fun fillDb() {
+        viewModel.fillData()
     }
 }

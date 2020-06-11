@@ -15,15 +15,34 @@ class MainRepository(application: Application) {
         employeeDao = db?.employeeDao()
     }
 
-    public fun getEmployees(): LiveData<List<Employee>>? {
+    fun getEmployees(): LiveData<List<Employee>>? {
         return employeeDao?.getAll()
     }
 
-    public fun addEmployee(employee: Employee) {
+    fun addEmployee(employee: Employee) {
         AsyncTask.execute { employeeDao?.insert(employee) }
     }
 
-    public fun removeEmployee(employee: Employee) {
+    fun removeEmployee(employee: Employee) {
         AsyncTask.execute { employeeDao?.delete(employee) }
     }
+
+    fun deleteAllEmployees() {
+        AsyncTask.execute { employeeDao?.deleteAllEmployees() }
+    }
+
+    fun fillData() {
+        AsyncTask.execute { fillEmployees(30) }
+    }
+
+    private fun fillEmployees(count: Int) {
+        var currentRowsCount = employeeDao?.getRowCount()
+        if (currentRowsCount == null)
+            currentRowsCount = 0
+
+        for (employeeNum in 0 + currentRowsCount..count + currentRowsCount) {
+            employeeDao?.insert(Employee(null, "name$employeeNum", "2000$employeeNum"))
+        }
+    }
+
 }

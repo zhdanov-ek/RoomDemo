@@ -21,4 +21,9 @@ public interface EmployeeDao {
     @Delete
     fun delete(employee: Employee)
 
+    @Query("DELETE FROM employee")
+    fun deleteAllEmployees()
+
+    @Query("SELECT COUNT(*) FROM employee")
+    fun getRowCount(): Int
 }

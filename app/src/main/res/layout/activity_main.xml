@@ -39,11 +39,16 @@
             android:text="@string/add" />
 
         <Button
-            android:id="@+id/refreshButton"
+            android:id="@+id/deleteAllButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/refresh" />
+            android:text="@string/delete_all" />
+
+        <Button
+            android:id="@+id/fillDBButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fill_db" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
